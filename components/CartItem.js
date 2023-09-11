@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TouchableOpacity, Button } from 'react-native';
+import useProduct from './useProduct'; // Import your context or hook for managing the cart
 
 const CartItem = ({ item }) => {
-  const { image, category, title, price, description, qty } = item;
-  const [isExpanded, setIsExpanded] = useState(false); // Track expansion state
+  const { image, category, title, price, description, qty, id } = item;
+  const [isExpanded, setIsExpanded] = useState(false);
+  const { removerCart } = useProduct(); // Import your removerCart function
+
+  const handleRemoveItem = () => {
+    // Call the removerCart function to remove the item with the specified ID
+    removerCart(item);
+  };
 
   return (
     <View className="w-full bg-white dark:bg-gray-50/10 rounded-3xl p-5 my-3">
@@ -29,6 +36,7 @@ const CartItem = ({ item }) => {
             <Text className="text-blue-500">Read more</Text>
           </TouchableOpacity>
         )}
+        <Button title="Remove" onPress={handleRemoveItem} color="red" />
       </View>
     </View>
   );
