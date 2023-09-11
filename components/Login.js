@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderColor: '#ccc',
     width: '80%',
+    backgroundColor: 'white',
   },
   errorText: {
     color: 'red',
